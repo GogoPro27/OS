@@ -4,15 +4,15 @@
 
 int main()
 {
-        //A null terminated array of character
-        //pointers
         printf("Hello from main");
         
+        // Niza od pokazhuvaci koja zavrshuva so NULL
         char *args[]={"./exec_example", NULL};
         execvp(args[0],args);
      
-        /*All statements are ignored after execvp() call as this whole
-        process(execDemo.c) is replaced by another process (EXEC.c)
+        /*
+            Site naredbi po execvp se ignorirani bidejki 
+            e zamenet process image-ot
         */
         printf("Ending-----");
      
