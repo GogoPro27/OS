@@ -1,7 +1,5 @@
 # OS-2022-23
 
-
-
 ## Description
 
 This repository is created for the purpose of the auditorium exercises for the subject Operating Systems 2022/2023.
