@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class RaceConditions {
+public class RaceConditionsExample {
     public static void main(String[] args) throws InterruptedException {
 
         UnsafeSequence sequence =  new UnsafeSequence();

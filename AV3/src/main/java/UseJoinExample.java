@@ -1,4 +1,4 @@
-public class UseJoin {
+public class UseJoinExample {
     public static void main(String[] args) throws InterruptedException {
         Count c = new Count();
         c.start();
