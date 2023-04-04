@@ -52,15 +52,11 @@ public class Pushachi {
         public void execute() throws InterruptedException {
             emptyTable.acquire();
             this.table.putItems();
-            if(!firstTime) {
-                for (int i = 0; i < 3; i++) {
-                    if (waiting[i]) {
-                        waiting[i] = false;
-                        wait[i].release();
-                    }
+            for (int i = 0; i < 3; i++) {
+                if (waiting[i]) {
+                    waiting[i] = false;
+                    wait[i].release();
                 }
-            } else {
-                firstTime = false;
             }
             accessTable.release();
         }
