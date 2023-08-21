@@ -3,3 +3,4 @@
 out/
 AV2/source/*
 *.iml
+*.class
