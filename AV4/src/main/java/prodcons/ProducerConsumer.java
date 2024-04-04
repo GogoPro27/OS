@@ -1,10 +1,14 @@
 package main.java.prodcons;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 public class ProducerConsumer {
@@ -12,18 +16,20 @@ public class ProducerConsumer {
     static final int NUM_CONSUMERS = 50;
 
     // TO DO: Define synchronization elements
-    public static Semaphore isBufferEmpty;
-    public static Semaphore[] items;
-    public static Lock lock;
+
+    static Semaphore[] semaphores;
+    static Semaphore isEmpty;
+    static Lock lock;
+
 
     public static void init(int numConsumers) {
-        // TO DO: Initialize synchronization elements
-        isBufferEmpty = new Semaphore(1);
-        lock = new ReentrantLock();
-        items = new Semaphore[NUM_CONSUMERS];
-        for (int i = 0; i < NUM_CONSUMERS; i ++) {
-            items[i] = new Semaphore(0);
+        semaphores=new Semaphore[NUM_CONSUMERS];
+        for (int i = 0; i < NUM_CONSUMERS; i++) {
+            semaphores[i] = new Semaphore(1);
         }
+        isEmpty = new Semaphore(1);
+        lock = new ReentrantLock();
+
     }
 
     public static void main(String[] args) {

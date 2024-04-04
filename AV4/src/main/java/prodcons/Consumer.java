@@ -11,14 +11,13 @@ class Consumer extends Thread {
     }
 
     public void execute() throws InterruptedException {
-        // TO DO: Implement item taking logic
-        ProducerConsumer.items[consumerId].acquire();
-        this.buffer.getItem(consumerId);
+        ProducerConsumer.semaphores[consumerId].acquire();
+        buffer.getItem(consumerId);
 
         ProducerConsumer.lock.lock();
-        buffer.decrementNumberOfItemsLeft(); // items--;
-        if (buffer.isBufferEmpty()) { // items == 0;
-            ProducerConsumer.isBufferEmpty.release();
+        buffer.decrementNumberOfItemsLeft();
+        if (buffer.isBufferEmpty()){
+            ProducerConsumer.isEmpty.release();
         }
         ProducerConsumer.lock.unlock();
     }

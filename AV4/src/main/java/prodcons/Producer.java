@@ -1,5 +1,7 @@
 package main.java.prodcons;
 
+import java.util.concurrent.Semaphore;
+
 public class Producer extends Thread {
     private Buffer buffer;
 
@@ -8,15 +10,12 @@ public class Producer extends Thread {
     }
 
     public void execute() throws InterruptedException {
-        // TO DO: Implement buffer filling logic with synchronization
-        ProducerConsumer.isBufferEmpty.acquire();
-        
+        ProducerConsumer.isEmpty.acquire();
         ProducerConsumer.lock.lock();
         buffer.fillBuffer();
         ProducerConsumer.lock.unlock();
-
-        for (int i=0; i<ProducerConsumer.NUM_CONSUMERS; i++) {
-            ProducerConsumer.items[i].release();
+        for (int i = 0; i < ProducerConsumer.semaphores.length; i++) {
+            ProducerConsumer.semaphores[i].release();
         }
     }
 
