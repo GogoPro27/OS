@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+ sound_level_sensor:
+  build:
+   context: java_servis_1
+   dockerfile: java_servis_1/Dockerfile
+  volumes:
+   - soundlevel:/usr/src/myapp/data/soundlevel 
+  depends_on:
+   - file_creator
+  networks:
+   - city-noisepollution-network  
+  environment:
+   - SOUND_LEVEL_PATH=/usr/src/myapp/data/soundlevel/soundlevel.txt
+ 
+ sound_level_monitor:
+  build:
+   context: java_servis_2
+   dockerfile: java_servis_2/Dockerfile
+  volumes:
+   - soundlevel:/usr/src/myapp/data/soundlevel
+   - noisepollution:/usr/src/myapp/data/noisepollution
+  depends_on:
+   - sound_level_sensor
+   - file_creator
+  networks:
+   - city-noisepollution-network
+  environment:
+   - SOUND_LEVEL_PATH=/usr/src/myapp/data/soundlevel/soundlevel.txt
+   - NOISE_POLLUTION_PATH=/usr/src/myapp/data/noisepollution/noisepollution.txt
+
+ file_creator:
+  image: alpine  # Using a lightweight Alpine Linux image
+  volumes:
+   - soundlevel:/usr/src/myapp/data/soundlevel  # Mount the soundlevel volume to /usr/src/myapp/data/soundlevel
+   - noisepollution:/usr/src/myapp/data/noisepollution  # Mount the noisepollution volume to /usr/src/myapp/data/noisepollution
+  command: sh -c "touch /usr/src/myapp/data/soundlevel.txt && touch /usr/src/myapp/data/noisepollution.txt"
+
+volumes:
+ soundlevel:
+ noisepollution:
+
+networks:
+ city-noisepollution-network: 
+  driver: bridge

@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  sensor:
+    build:
+      context: sensor_folder
+    volumes:
+      - ./volume_data_folder:/usr/src/myapp/data
+  monitor:
+    build:
+      context: monitor_folder
+    volumes:
+      - ./volume_data_folder:/usr/src/myapp/data
+    depends_on:
+      - sensor

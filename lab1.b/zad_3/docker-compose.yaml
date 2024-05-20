@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  sensor:
+    build:
+      context: sensor_folder
+    volumes:
+      - temperature:/usr/src/myapp/data
+  monitor:
+    build:
+      context: monitor_folder
+    volumes:
+      - temperature:/usr/src/myapp/data/temperatures
+      - temperaturelevel:/usr/src/myapp/data/levels
+    environment:
+      - LOW_TEMPERATURE=5
+      - MEDIUM_TEMPERATURE=19
+      - HIGH_TEMPERATURE=35
+    depends_on:
+      - sensor
+volumes:
+  temperature:
+  temperaturelevel:
+networks:
+  temperature-level-network:
+    driver: bridge
+

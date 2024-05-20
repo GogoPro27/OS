@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+ sound_level_sensor:
+  build:
+   context: java_servis_1
+   dockerfile: java_servis_1/Dockerfile
+  volumes:
+   - ./volume_data:/usr/src/myapp/data 
+
+ sound_level_monitor:
+  build:
+   context: java_servis_2
+   dockerfile: java_servis_2/Dockerfile
+  volumes:
+   - ./volume_data:/usr/src/myapp/data
+  depends_on:
+   - sound_level_sensor
