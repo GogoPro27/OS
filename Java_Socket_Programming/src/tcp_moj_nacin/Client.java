@@ -1,4 +1,4 @@
-package tcp_myTry;
+package tcp_moj_nacin;
 
 import java.io.*;
 import java.net.InetAddress;

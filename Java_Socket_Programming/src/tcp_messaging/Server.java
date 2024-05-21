@@ -1,4 +1,4 @@
-package tcp;
+package tcp_messaging;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -24,7 +24,7 @@ public class Server extends Thread {
             return;
         }
 
-        System.out.println("SERVER: started");
+        System.out.println(String.format("SERVER: started on %s:%d",serverSocket.getInetAddress(),serverSocket.getLocalPort()));
         System.out.println("SERVER: waiting for connections...");
 
         while (true) {
@@ -36,12 +36,12 @@ public class Server extends Thread {
             }
 
             System.out.println("SERVER: new client - creating new worker thread...");
-            new Worker(newClient).start();
+            new HttpWorkerThread(newClient).start();
         }
     }
 
     public static void main(String[] args) {
-        Server server = new Server(7002);
+        Server server = new Server(9000);
         server.start();
     }
 }

@@ -1,4 +1,4 @@
-package tcp_myTry;
+package tcp_moj_nacin;
 
 import java.io.*;
 import java.net.Socket;
@@ -23,6 +23,7 @@ public class Worker extends Thread{
             //TODO implement Http protocol
             WebRequest webRequest = WebRequest.WebRequestBuilder(bufferedReader);
 
+            System.out.println(String.format("Connected: %s:%d",socket.getInetAddress(),socket.getPort()));
             System.out.println("Server recieved : "+webRequest.method+ " " + webRequest.path+ " "+ webRequest.protocol);
 
             String htmlContent = "<html><body><h1>Hello World!</h1></body></html>";

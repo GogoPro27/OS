@@ -1,4 +1,4 @@
-package tcp_myTry;
+package tcp_moj_nacin;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -18,7 +18,7 @@ public class Server extends Thread{
         try{
             serverSocket = new ServerSocket(port);
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            System.err.println("Server failed to start !");
             return;
         }
         System.out.println("Server started !");
@@ -38,7 +38,6 @@ public class Server extends Thread{
 
             } catch (IOException e) {
                 System.err.println(e.getMessage());
-//                return;
             }
             System.out.println("Server got a new client ! Created a new WorkingThread");
 
