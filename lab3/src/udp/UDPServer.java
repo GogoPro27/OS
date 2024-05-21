@@ -6,12 +6,12 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 
-public class UDP_Server extends Thread{
+public class UDPServer extends Thread{
     private byte [] buffer = new byte[256];
     private final DatagramSocket socket;
     private boolean isLoggedIn;
 
-    public UDP_Server(int port) {
+    public UDPServer(int port) {
         isLoggedIn = false;
         try {
             socket = new DatagramSocket(port);
@@ -32,7 +32,7 @@ public class UDP_Server extends Thread{
                 socket.receive(packet);
                 String received_message = new String(packet.getData(),0,buffer.length).trim();
 
-                System.out.println("UDP_SERVER RECEIVED: "+received_message);
+                System.out.println(String.format("RECEIVED(from: %s:%d): %s",packet.getAddress(),packet.getPort(),received_message));
                 if(!received_message.equals("login") && !isLoggedIn) {
                     buffer = new byte[256];
                     buffer = "Please log in first".getBytes();
@@ -51,10 +51,9 @@ public class UDP_Server extends Thread{
                 packet = new DatagramPacket(buffer,buffer.length,inetAddress,port);
                 socket.send(packet);
 
-                if(received_message.equals("logout")) {
-                    socket.close();
-                    return;
-                }
+//                if(received_message.equals("logout")) {
+//                    socket.close();
+//                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -62,7 +61,8 @@ public class UDP_Server extends Thread{
 
     }
     public static void main(String[] args) {
-        UDP_Server server = new UDP_Server(4445);
+        int serverPort = Integer.parseInt(System.getenv("SERVER_PORT"));
+        UDPServer server = new UDPServer(4445);
         server.start();
     }
 }

@@ -36,7 +36,8 @@ public class Server extends Thread {
             }
 
             System.out.println("SERVER: new client - creating new worker thread...");
-            new HttpWorkerThread(newClient).start();
+//            new HttpWorkerThread(newClient).start();
+            new Worker(newClient).start();
         }
     }
 

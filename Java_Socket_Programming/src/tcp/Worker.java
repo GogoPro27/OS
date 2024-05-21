@@ -27,7 +27,7 @@ public class Worker extends Thread {
 
             String line = null;
 
-            while (!(line = reader.readLine()).equals("")) {
+            while (!(line = reader.readLine()).isEmpty()) {
                 String[] parts = line.split(":\\s+", 2);
                 request.headers.put(parts[0], parts[1]);
             }
