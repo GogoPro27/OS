@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: DockerfileServer
+
+    environment:
+      - SHARED_SERVER=shared_server
+      - SHARED_SERVER_PORT=8002
+      - SERVER_PORT=8001
+
+    networks:
+      - tcp_network
+      - servers_network
+    depends_on:
+      - shared_server
+
+  client:
+    build:
+      context: .
+      dockerfile: DockerfileClient
+
+    environment:
+      - SERVER_NAME=server
+      - SERVER_PORT=8001
+    networks:
+      - tcp_network
+    depends_on:
+      - server
+    deploy:
+      replicas: 15
+
+  shared_server:
+    build:
+      context: .
+      dockerfile: DockerfileShared
+
+    environment:
+      - LOGGER_PATH=/usr/src/myapp/data/logger.txt
+      - COUNTER_PATH=/usr/src/myapp/data/counter.bin
+      - SERVER_PORT=8002
+    networks:
+      - servers_network
+    volumes:
+      - /Users/gorazd/IdeaProjects/os-2022-23/Kolokviumska/data:/usr/src/myapp/data
+
+networks:
+  servers_network:
+    driver: bridge
+  tcp_network:
+    driver: bridge
+

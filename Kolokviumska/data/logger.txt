@@ -1,0 +1,30 @@
+Client with address 192.168.240.3:58768 requested for: DBMS
+Server replied with: HTTP/1.1 200 OK
+Client with address 192.168.240.7:44914 requested for: ADS
+Server replied with: HTTP/1.1 200 OK
+Client with address 192.168.240.4:41162 requested for: ADS
+Server replied with: HTTP/1.1 200 OK
+Client with address 192.168.240.6:48374 requested for: DBMS
+Server replied with: HTTP/1.1 200 OK
+Client with address 192.168.240.5:53424 requested for: ADS
+Server replied with: HTTP/1.1 200 OK
+Client with address 192.168.240.8:40618 requested for: ADS
+Server replied with: HTTP/1.1 200 OK
+Client with address 192.168.240.9:53282 requested for: ADS
+Server replied with: HTTP/1.1 200 OK
+Client with address 192.168.240.3:58780 requested for: wrong
+Server replied with: HTTP/1.1 404 Not Found
+Client with address 192.168.240.4:41172 requested for: AI
+Server replied with: HTTP/1.1 200 OK
+Client with address 192.168.240.3:58786 requested for: DBMS
+Server replied with: HTTP/1.1 200 OK
+Client with address 192.168.240.4:41176 requested for: CN
+Server replied with: HTTP/1.1 200 OK
+Client with address 192.168.240.3:59484 requested for: OS
+Server replied with: HTTP/1.1 200 OK
+Client with address 192.168.240.4:56524 requested for: AI
+Server replied with: HTTP/1.1 200 OK
+Client with address 192.168.240.3:59486 requested for: AI
+Server replied with: HTTP/1.1 200 OK
+Client with address 192.168.240.4:56540 requested for: CN
+Server replied with: HTTP/1.1 200 OK

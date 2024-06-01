@@ -1,0 +1,9 @@
+FROM eclipse-temurin
+WORKDIR /usr/src/myapp
+COPY . .
+RUN rm -r ./src/tcp
+RUN rm ./Dockerfile*
+RUN javac -d . ./src/shared/*.java
+RUN rm -r data
+RUN mkdir "data"
+CMD ["java", "shared.ServerSharedResources"]
