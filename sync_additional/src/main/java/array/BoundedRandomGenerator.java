@@ -1,3 +1,5 @@
+package main.java.array;
+
 import java.util.Random;
 
 public class BoundedRandomGenerator {

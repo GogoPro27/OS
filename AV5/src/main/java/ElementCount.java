@@ -16,7 +16,8 @@ public class ElementCount {
     static Semaphore done = new Semaphore(0);
     static Semaphore canCheckMax = new Semaphore(0);
 
-    static final BoundedRandomGenerator random = new BoundedRandomGenerator();
+    public static final BoundedRandomGenerator random = new BoundedRandomGenerator();
+
     private static final int ARRAY_LENGTH = 10000;
     private static final int NUM_THREADS = 10;
 
@@ -30,7 +31,6 @@ public class ElementCount {
     }
 
     public static void main(String[] args) throws InterruptedException {
-
         int[] arr = ArrayGenerator.generate(ARRAY_LENGTH, SEARCH_TARGET);
 
         // TODO: Make the SearchThread class a thread and start 10 instances

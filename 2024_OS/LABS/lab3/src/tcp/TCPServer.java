@@ -39,8 +39,8 @@ public class TCPServer extends Thread{
     }
 
     public static void main(String[] args) {
-        int serverPort = Integer.parseInt(System.getenv("SERVER_PORT"));
-        TCPServer server = new TCPServer(serverPort);
+//        int serverPort = Integer.parseInt(System.getenv("SERVER_PORT"));
+        TCPServer server = new TCPServer(8888);
         server.start();
     }
 }

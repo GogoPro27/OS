@@ -42,28 +42,26 @@ public class TCPClient extends Thread{
 
 
             while (true){
-//                String to_send = scanner.nextLine();
-                String to_send;
-                Random random = new Random();
-                int num = random.nextInt(WORD_LIST.size());
-                if (isFirst){
-                    int chance = random.nextInt(10);
-                    to_send = chance<8?"login":WORD_LIST.get(num);
-                    isFirst=false;
-                }else {
-                    to_send = WORD_LIST.get(num);
-                }
+                String to_send = scanner.nextLine();
+//                String to_send;
+//                Random random = new Random();
+//                int num = random.nextInt(WORD_LIST.size());
+//                if (isFirst){
+//                    int chance = random.nextInt(10);
+//                    to_send = chance<8?"login":WORD_LIST.get(num);
+//                    isFirst=false;
+//                }else {
+//                    to_send = WORD_LIST.get(num);
+//                }
                 writer.write(to_send+"\n");
                 writer.flush();
                 String received = reader.readLine();
                 System.out.println("RECIEVED: " + received);
                 if (received.equals("logged out!") || received.contains("disconnected"))break;
-                Thread.sleep(random.nextInt(2000)+500);
+//                Thread.sleep(random.nextInt(2000)+500);
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
             try {
@@ -83,9 +81,9 @@ public class TCPClient extends Thread{
     public static void main(String[] args) {
 //        List<TCPClient> clients = IntStream.range(0,10).mapToObj(i->new TCPClient("localhost",7100)).toList();
 //        clients.forEach(Thread::start);
-        String serverName = System.getenv("SERVER_NAME");
-        int serverPort = Integer.parseInt(System.getenv("SERVER_PORT"));
-        TCPClient client = new TCPClient(serverName,serverPort);
+//        String serverName = System.getenv("SERVER_NAME");
+//        int serverPort = Integer.parseInt(System.getenv("SERVER_PORT"));
+        TCPClient client = new TCPClient("localhost",8888);
         client.start();
     }
 }

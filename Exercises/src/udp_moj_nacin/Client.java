@@ -1,9 +1,8 @@
 package udp_moj_nacin;
 
-import udp.UDPClient;
+
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 
@@ -44,7 +43,7 @@ public class Client extends Thread{
     }
 
     public static void main(String[] args) {
-        UDPClient client = new UDPClient("localhost",4445,"Hello World!");
+        Client client = new Client("localhost",4445,"Hello World!");
         client.start();
     }
 }

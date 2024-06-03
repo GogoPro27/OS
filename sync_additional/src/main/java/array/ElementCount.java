@@ -1,3 +1,7 @@
+package main.java.array;
+
+import main.java.array.BoundedRandomGenerator;
+
 import java.util.Arrays;
 
 public class ElementCount {
